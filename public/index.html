@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body style="background-color:aquamarine">
+    <!-- <form action="/api/productos/guardar" method="post">
+
+        <label for="titulo">Title:</label>
+        <input type="text" id="titulo" name="titulo">
+
+        <label for="precio">Price:</label>
+        <input type="number" id="precio" name="precio">
+
+        <label for="foto">Thumbnail:</label>
+        <input type="text" id="foto" name="foto">
+        <input type="submit">
+
+
+    </form> -->
+    <h1 style="color:blue"> Ingrese Producto </h1>
+    <div class="container-fluid">
+        <form action="/api/productos/guardar" method="post">
+            <div class="col-2">
+                <div class="mb-3">
+                    <label for="titulo" class="form-label">Nombre:</label>
+                    <input type="text" class="form-control" id="titulo" name="titulo">
+
+                </div>
+                <div class="mb-3">
+                    <label for="precio" class="form-label">Precio:</label>
+                    <input type="number" class="form-control" id="precio" name="precio">
+                </div>
+                <div class="mb-3">
+                    <label for="foto" class="form-label">Foto URL</label>
+                    <input type="text" class="form-control" id="foto" name="foto">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+</body>
+
+</html>
