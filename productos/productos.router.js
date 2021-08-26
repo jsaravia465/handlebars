@@ -63,7 +63,10 @@ router.get('/vista', (req, res) => {
     if (productos.length > 0) {
         valor = true;
     }
-    res.render("index", { productos: productos, cantRegistros: valor });
+    console.log(JSON.stringify(productos));
+
+    //res.render("index", { vegetables: [{ nombre: "carrot", edad: "potato" }, { nombre: "beet", edad: 29 }], cantRegistros: valor });
+    res.render("index", { prod: productos, cantRegistros: valor });
 
 
 });
