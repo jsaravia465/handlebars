@@ -10,12 +10,12 @@
 </head>
 
 <body style="background-color:aquamarine">
-    {{!--
+    <!-- {{!--
     <ul>
         {{#each productos}}
         <li> {{this.edad}} </li>
         {{/each}}
-    </ul> --}}
+    </ul> --}} -->
     <h1 style="color:blue"> Vista de Productos </h1>
     <!-- {{#if cantRegistros}} -->
     <% if (cantRegistros) { %>
@@ -38,7 +38,7 @@
                                 <%= p.precio %>
                             </td>
                             <td>
-                                <img src=<%=p.foto %>>
+                                <img src=<%=p.foto %> width="32" height="32">
                             </td>
                             <% });%>
 
