@@ -66,19 +66,23 @@ html
     h1(style="color:blue") Vista de Productos
 
    
-
-    div(class="container-fluid")
-        div(class="col-2")
-            table(class="table table-dark table-striped")
-                tr
-                    th Nombre
-                    th precio
-                    th foto
-                each val in prod       
+    if cantRegistros
+        div(class="container-fluid")
+            div(class="col-2")
+                table(class="table table-dark table-striped")
                     tr
-                        td= val.titulo
-                        td= val.precio
-                        td= val.foto 
+                        th Nombre
+                        th precio
+                        th foto
+                    each val in prod       
+                        tr
+                            td= val.titulo
+                            td= val.precio
+                            td(scope="row")
+                                img(src=val.foto  width="32" height="32")
+    else 
+       div 
+            h2 No se encontraron productos
                
 
     include foot.pug
