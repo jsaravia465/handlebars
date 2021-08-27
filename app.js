@@ -26,7 +26,7 @@ app.use('/api/productos', productos);
 //         partialsDir: __dirname + '/views/partials/'
 //     }));
 
-app.set("view engine", "pug");
-app.set("views", "./views/layouts");
+app.set("view engine", "ejs");
+//app.set("views", "./views/layouts");
 
 app.use('/static', express.static(__dirname + '/public'));

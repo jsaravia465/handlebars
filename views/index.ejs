@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body style="background-color:aquamarine">
+    {{!--
+    <ul>
+        {{#each productos}}
+        <li> {{this.edad}} </li>
+        {{/each}}
+    </ul> --}}
+    <h1 style="color:blue"> Vista de Productos </h1>
+    <!-- {{#if cantRegistros}} -->
+    <% if (cantRegistros) { %>
+        <div class="container-fluid">
+            <div class="col-2">
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Foto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% prod.forEach (function(p) { %>
+                            <td>
+                                <%= p.titulo %>
+                            </td>
+                            <td>
+                                <%= p.precio %>
+                            </td>
+                            <td>
+                                <img src=<%=p.foto %>>
+                            </td>
+                            <% });%>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <% } else {%>
+            <div>
+                <h2>No se encontraron productos</h2>
+            </div>
+            <%}%>
+
+</body>
+
+</html>
