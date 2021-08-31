@@ -26,18 +26,18 @@ router.get('/listar/:id', (req, res) => {
 
 });
 
-router.post('/guardar', (req, res) => {
+// router.post('/guardar', (req, res) => {
 
-    console.log(req.body);
-    let obj = req.body;
-    obj.id = productos.length + 1;
-    productos.push(req.body);
-    //res.send(req.body);
-    res.redirect('/static/index.html');
+//     console.log(req.body);
+//     let obj = req.body;
+//     obj.id = productos.length + 1;
+//     productos.push(req.body);
+//     //res.send(req.body);
+//     res.redirect('/static/index.html');
 
 
 
-});
+// });
 
 
 router.put('/actualizar/:id', (req, res) => {
