@@ -43,7 +43,7 @@ io.on('connection', (socket) => {
     console.log('Usuario conectado')
         // Se imprimirá solo la primera vez que se ha abierto la conexión 
         //socket.emit('mi mensaje', 'Este es mi mensaje desde el servidor')
-        //io.sockets.emit('reenvio', carrito);
+    io.emit('reenvio_lista', carrito);
 
     console.log('envio a todos ' + carrito);
     socket.on('productos', data => {

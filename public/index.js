@@ -45,20 +45,38 @@ document.addEventListener("DOMContentLoaded", function() {
     const template = Handlebars.compile(my_template);
 
     socket.on('reenvio', data => {
-        console.log(data);
+        console.log('entro por reenvio ' + JSON.stringify(data));
+        //console.log(data.length);
+        //if (data.length > 0) {
         productos.push(data);
         //console.log(productos);
         tabla.innerHTML = template({
             prod: productos,
             cantRegistros: valor()
         });
+        // };
 
-    })
+    });
+
+    socket.on('reenvio_lista', data => {
+        console.log('entro por reenvio ' + JSON.stringify(data));
+        //console.log(data.length);
+        if (data.length > 0) {
+            productos = data.slice();
+            //console.log(productos);
+            tabla.innerHTML = template({
+                prod: productos,
+                cantRegistros: valor()
+            });
+        };
+
+    });
 
     tabla.innerHTML = template({
         prod: productos,
         cantRegistros: valor()
     });
+    console.log('paso por parte principal');
 
 
 
@@ -103,6 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     function valor() {
+        console.log('tamaño de productos' + productos.length);
         if (productos.length > 0) {
             return true;
         } else {
