@@ -3,8 +3,65 @@ document.addEventListener("DOMContentLoaded", function() {
     const socket = io();
     let productos = [];
 
-    const my_template = document.querySelector("#template");
+    const my_template = `{{#if cantRegistros}}
+    <div class="container-fluid">
+        <div class="col-2">
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Foto</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {{#each prod}}
+
+                    <tr>
+                        <td>{{this.titulo}}</td>
+                        <td>{{this.precio}}</td>
+                        <td><img src={{this.foto}} width="32" height="32"></td>
+
+                    </tr>
+                    {{/each}}
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {{else}}
+    <div>
+        <h2>No se encontraron productos</h2>
+    </div>
+    {{/if}}`; //document.querySelector("#template");
+
+
+
+
     const tabla = document.querySelector("#tabla");
+
+    const template = Handlebars.compile(my_template);
+
+    socket.on('reenvio', data => {
+        console.log(data);
+        productos.push(data);
+        //console.log(productos);
+        tabla.innerHTML = template({
+            prod: productos,
+            cantRegistros: valor()
+        });
+
+    })
+
+    tabla.innerHTML = template({
+        prod: productos,
+        cantRegistros: valor()
+    });
+
+
+
 
     document.querySelector('form').addEventListener("submit", function(e) {
         e.preventDefault();
@@ -16,9 +73,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     socket.on('mi mensaje', data => {
         alert(data)
-        socket.emit('notificacion', 'Mensaje recibido exitosamente')
+        socket.emit('notificacion', 'Mensaje recibido exitosamente');
 
     })
+
+
 
     function guardar() {
         console.log("Guardando");
@@ -27,14 +86,15 @@ document.addEventListener("DOMContentLoaded", function() {
         obj.titulo = document.getElementById('titulo').value;
         obj.precio = document.getElementById('precio').value;
         obj.foto = document.getElementById('foto').value;
-        console.log(obj);
-        productos.push(obj);
-        const template = Handlebars.compile(my_template.innerHTML);
-        tabla.innerHTML = template({
-            prod: productos,
-            cantRegistros: valor()
-        });
-        console.log(productos);
+        // console.log(obj);
+        //productos.push(obj);
+        // const template = Handlebars.compile(my_template);
+        // tabla.innerHTML = template({
+        //     prod: productos,
+        //     cantRegistros: valor()
+        // });
+        //console.log(productos);
+        socket.emit('productos', obj);
         document.getElementById('form').reset();
         return false;
 
@@ -49,4 +109,5 @@ document.addEventListener("DOMContentLoaded", function() {
             return false;
         }
     }
+
 });
