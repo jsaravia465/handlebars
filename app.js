@@ -9,6 +9,7 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
 let carrito = [];
+let messages = [];
 
 // const server = app.listen(8080, () => { console.log(`Se levanto correctamente el servidor en el puerto ${server.address().port }`) })
 http.listen(8080, () => console.log('SERVER ON'))
@@ -53,7 +54,12 @@ io.on('connection', (socket) => {
         io.sockets.emit('reenvio', data);
 
 
-    })
+    });
+
+    socket.on('new-message', function(data) {
+        messages.push(data);
+        io.sockets.emit('messages', messages);
+    });
 
 
 

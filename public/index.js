@@ -88,6 +88,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     })
 
+    document.getElementById('form_chat').addEventListener("submit", function(e) {
+        e.preventDefault();
+        addMessage();
+    })
+
 
     socket.on('mi mensaje', data => {
         alert(data)
@@ -128,5 +133,33 @@ document.addEventListener("DOMContentLoaded", function() {
             return false;
         }
     }
+
+    function addMessage() {
+        console.log(document.getElementById('correo').value);
+        if (document.getElementById('correo').value === "") {
+            alert('Debe ingresar un correo.');
+        } else {
+            var mensaje = {
+                correo: document.getElementById('correo').value,
+                mensaje: document.getElementById('mensaje').value
+            };
+            socket.emit('new-message', mensaje);
+        }
+        return false;
+    }
+
+    function render(data) {
+        let f = new Date();
+        let fecha = f.getDate() + "/" + f.getMonth() + "/" + f.getFullYear() + '  ' + f.getHours() + ':' + f.getMinutes() + ':' + f.getSeconds();
+        console.log(fecha);
+
+        var html = data.map(function(elem, index) {
+            return (`<div>
+        <b style="color:blue"> ${elem.correo} </b> <strong style="color:#8D4925">[${fecha}]</strong> :
+        <em style="color:green"> <font face="Italic">  ${elem.mensaje}</font> </em> </div>`)
+        }).join(" ");
+        document.getElementById('messages').innerHTML = html;
+    }
+    socket.on('messages', function(data) { render(data); });
 
 });

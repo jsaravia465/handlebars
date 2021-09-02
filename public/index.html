@@ -92,6 +92,15 @@
         });
         document.getElementById('tabla').innerText += compiledHtml;
     </script> -->
+    <br><br><br>
+    <h1 style="color:blue">Centro de Mensajes</h1>
+    <form id="form_chat">
+        <input type="text" id="correo" placeholder="Ingresa tu correo">
+        <hr>
+        <div id='messages'></div>
+        <input type="text" id="mensaje" placeholder="Ingresa algun mensaje">
+        <input type="submit" value="Enviar" class="btn btn-primary">
+    </form>
     <script src="/socket.io/socket.io.js"></script>
     <script src="index.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
