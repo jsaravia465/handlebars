@@ -1,4 +1,5 @@
 const express = require('express');
+const Archivo = require('./archivo.js');
 
 const app = express();
 
@@ -10,6 +11,7 @@ const io = require('socket.io')(http);
 
 let carrito = [];
 let messages = [];
+let archivo = new Archivo('productos.txt');
 
 // const server = app.listen(8080, () => { console.log(`Se levanto correctamente el servidor en el puerto ${server.address().port }`) })
 http.listen(8080, () => console.log('SERVER ON'))
@@ -50,6 +52,7 @@ io.on('connection', (socket) => {
     socket.on('productos', data => {
         console.log('llega al servidor ' + JSON.stringify(data));
         carrito.push(data);
+
         console.log('Datos en el carrito ' + carrito);
         io.sockets.emit('reenvio', data);
 
@@ -58,6 +61,7 @@ io.on('connection', (socket) => {
 
     socket.on('new-message', function(data) {
         messages.push(data);
+        archivo.guardar(data);
         io.sockets.emit('messages', messages);
     });
 

@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const socket = io();
     let productos = [];
 
+
     const my_template = `{{#if cantRegistros}}
     <div class="container-fluid">
         <div class="col-2">
@@ -143,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 correo: document.getElementById('correo').value,
                 mensaje: document.getElementById('mensaje').value
             };
+
             socket.emit('new-message', mensaje);
         }
         return false;
