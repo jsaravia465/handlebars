@@ -1,8 +1,31 @@
 const express = require('express');
 const router = express.Router();
+const generador = require('../generador/productos');
 
 const app = express();
 let productos = [];
+
+
+router.get('/vista-test/:cant?', (req, res) => {
+
+
+
+
+    let cant = req.params.cant || 10;
+    let productos = [];
+
+    for (let i = 0; i < cant; i++) {
+        let producto = generador.get();
+        productos.push(producto);
+
+    }
+
+    res.send(productos);
+
+
+
+});
+
 
 router.get('/listar', (req, res) => {
 
